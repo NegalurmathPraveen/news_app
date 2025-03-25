@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:news_app/src/home/data/models/news_data_model.dart';
 
 import '../../../../core/widgets/custom_cache_network_image.dart';
@@ -12,10 +14,10 @@ class NewsDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageUrl = newsData.imageUrl != null && newsData.imageUrl!.isNotEmpty
-        ? newsData.imageUrl
+        ? newsData.imageUrl!
         : "https://www.iconsdb.com/icons/preview/white/photo-xxl.png";
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
@@ -23,21 +25,19 @@ class NewsDetailsScreen extends StatelessWidget {
             Icons.close_rounded,
             color: Colors.white,
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.pop(),
         ),
       ),
       body: Center(
-        child: Hero(
-          tag: newsData.imageUrl ?? "",
-          child: InteractiveViewer(
-              scaleFactor: 1000,
-              boundaryMargin: const EdgeInsets.all(0),
-              child: CustomCachedNetworkImage(
-                imageUrl: imageUrl,
-                width: double.infinity,
-                fit: BoxFit.fitHeight,
-              )),
-        ),
+        child: InteractiveViewer(
+            minScale: 1,
+            maxScale: 3,
+            child: CustomCachedNetworkImage(
+              imageUrl: imageUrl,
+              width: 1.sw,
+              height: 0.5.sh,
+              fit: BoxFit.contain,
+            )),
       ),
     );
   }
