@@ -32,11 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text("News App"),
-          surfaceTintColor: Colors.transparent,
-        ),
+            title: const Text("News App"), forceMaterialTransparency: true),
         body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: BlocConsumer<HomeBloc, HomeState>(
@@ -56,13 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       onRetry: () {
                         _bloc.add(GetNewsEvent(fetchInitialPage: true));
                       });
-                } else if(_bloc.newsList.isEmpty){
+                } else if (_bloc.newsList.isEmpty) {
                   return const EmptyNewsListWidget();
                 }
                 return RefreshIndicator(
                   // refresh indicator for pull to refresh action
                   onRefresh: () async {
-                   // _bloc.add(GetNewsEvent(fetchInitialPage: true));
+                    _bloc.add(GetNewsEvent(fetchInitialPage: true));
                   },
                   child: Padding(
                     padding: EdgeInsets.all(5.w),
