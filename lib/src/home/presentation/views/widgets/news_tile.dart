@@ -20,7 +20,7 @@ class NewsTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(8.w),
               child: CustomCachedNetworkImage(
                 imageUrl: newsData.imageUrl,
                 fit: BoxFit.cover,
@@ -47,7 +47,7 @@ class NewsTile extends StatelessWidget {
                   Text(
                     newsData.title,
                     style: const TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,
@@ -57,7 +57,7 @@ class NewsTile extends StatelessWidget {
                   Text(
                     newsData.description,
                     style: TextStyle(
-                      fontSize: 14.0,
+                      fontSize: 14,
                       color: Colors.grey[600],
                     ),
                     maxLines: 2,

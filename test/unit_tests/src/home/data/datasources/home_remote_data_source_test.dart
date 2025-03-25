@@ -73,9 +73,9 @@ void main() {
     test('should throw an error when Dio throws an exception', () async {
       // Arrange
       when(()=>mockDio.get(url, queryParameters: any(named:'queryParameters')))
-          .thenThrow(DioError(
-        requestOptions: RequestOptions(path: 'test'),
-        type: DioErrorType.unknown,
+          .thenThrow(ApiException(
+        statusCode: StatusCode.unknown,
+        message: "unknown error"
       ));
 
       // Act & Assert
@@ -84,7 +84,7 @@ void main() {
           apiToken: 'fake_api_token',
           page: 1,
         ),
-        throwsA(isA<DioError>()),
+        throwsA(isA<ApiException>()),
       );
     });
   });

@@ -24,7 +24,7 @@ void main() {
   });
 
   group('getNewsList', () {
-    final int page = 1;
+    const int page = 1;
     final response = AllNewsResponseModel(
       // Initialize with the necessary fields
       meta: MetaDataModel(page: 1, limit: 10, found: 100, returned: 10),
